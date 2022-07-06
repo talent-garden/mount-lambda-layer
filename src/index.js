@@ -44,7 +44,10 @@ export default async function run() {
     });
     const packageLayer = await getPackageJsonContent(res.data);
     const packageRepo = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    console.log('Repository depencies', packageRepo.dependencies);
+    console.log('Layer depencies', packageLayer.dependencies);
     packageRepo.dependencies = packageLayer.dependencies;
+    console.log('Overrideed Repository depencies', packageRepo.dependencies);
     fs.writeFileSync('./package.json', JSON.stringify(packageRepo, null, 2));
   } catch (error) {
     core.setFailed(error);
