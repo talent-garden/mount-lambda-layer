@@ -54555,7 +54555,7 @@ async function run() {
     console.log(`Layer ${layerName}!`);
 
     const client = new _aws_sdk_client_lambda__WEBPACK_IMPORTED_MODULE_4__.LambdaClient({ region });
-    const command = new _aws_sdk_client_lambda__WEBPACK_IMPORTED_MODULE_4__.GetLayerVersionByArnCommand({ Arn: 'arn:aws:lambda:eu-west-1:419773206330:layer:ag-stag-node-modules:2' });
+    const command = new _aws_sdk_client_lambda__WEBPACK_IMPORTED_MODULE_4__.GetLayerVersionByArnCommand({ Arn: arn });
     const response = await client.send(command);
     console.log(response.Content.Location);
     const res = await axios__WEBPACK_IMPORTED_MODULE_3__({

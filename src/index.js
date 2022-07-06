@@ -34,7 +34,7 @@ export default async function run() {
     console.log(`Layer ${layerName}!`);
 
     const client = new LambdaClient({ region });
-    const command = new GetLayerVersionByArnCommand({ Arn: 'arn:aws:lambda:eu-west-1:419773206330:layer:ag-stag-node-modules:2' });
+    const command = new GetLayerVersionByArnCommand({ Arn: arn });
     const response = await client.send(command);
     console.log(response.Content.Location);
     const res = await axios({
