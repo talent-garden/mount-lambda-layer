@@ -1,5 +1,6 @@
 import core from '@actions/core';
 import github from '@actions/github';
+import fs from 'fs';
 import { HttpClient } from '@actions/http-client';
 import { LambdaClient, GetLayerVersionByArnCommand } from "@aws-sdk/client-lambda"; // ES Modules import
 
@@ -18,7 +19,6 @@ export default async function run() {
     const response = await client.send(command);
     const httpClient = new HttpClient();
     const file = await httpClient.get(response.Content.Location)
-    console.log(file);
     const packageFile = await fs.readFile(path, 'utf8')
     console.log(packageFile);
 
