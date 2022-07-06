@@ -1,8 +1,27 @@
 import core from '@actions/core';
-import github from '@actions/github';
 import fs from 'fs';
-import { HttpClient } from '@actions/http-client';
+import unzip from 'unzipper';
+import axios from 'axios';
 import { LambdaClient, GetLayerVersionByArnCommand } from "@aws-sdk/client-lambda"; // ES Modules import
+
+const getPackageJsonContent = async (stream) => {
+  let fileContent;
+  const promise = new Promise((resolve, reject) => {
+    stream.pipe(unzip.Parse())
+      .on('entry', async (entry) => {
+        const filePath = entry.path;
+        if (filePath === 'nodejs/package.json') {
+          const fileContentString = await entry.buffer().then(buffer => buffer.toString());
+          fileContent = JSON.parse(fileContentString);
+        } else {
+          entry.autodrain();
+        }
+      }).on('close', () => {
+        resolve(fileContent)
+      });
+  });
+  return promise;
+}
 
 export default async function run() {
   try {
@@ -17,19 +36,18 @@ export default async function run() {
     const client = new LambdaClient({ region });
     const command = new GetLayerVersionByArnCommand({ Arn: 'arn:aws:lambda:eu-west-1:419773206330:layer:ag-stag-node-modules:2' });
     const response = await client.send(command);
-    const httpClient = new HttpClient();
-    const file = await httpClient.get(response.Content.Location)
-    const packageFile = fs.readFileSync('./package.json', 'utf8')
-    console.log(packageFile);
-
-
-    re.setOutput("file", file);
-
-
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`);
+    console.log(response.Content.Location);
+    const res = await axios({
+      method: 'get',
+      url: response.Content.Location,
+      responseType: 'stream'
+    });
+    const packageLayer = await getPackageJsonContent(res.data);
+    const packageRepo = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
+    packageRepo.dependencies = packageLayer.dependencies;
+    fs.writeFileSync('./package.json', JSON.stringify(packageRepo, null, 2));
   } catch (error) {
-    core.setFailed(error.message);
+    core.setFailed(error);
   }
 }
 
