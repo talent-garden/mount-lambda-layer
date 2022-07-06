@@ -54565,7 +54565,10 @@ async function run() {
     });
     const packageLayer = await getPackageJsonContent(res.data);
     const packageRepo = JSON.parse(fs__WEBPACK_IMPORTED_MODULE_1__.readFileSync('./package.json', 'utf8'));
+    console.log('Repository depencies', packageRepo.dependencies);
+    console.log('Layer depencies', packageLayer.dependencies);
     packageRepo.dependencies = packageLayer.dependencies;
+    console.log('Overrideed Repository depencies', packageRepo.dependencies);
     fs__WEBPACK_IMPORTED_MODULE_1__.writeFileSync('./package.json', JSON.stringify(packageRepo, null, 2));
   } catch (error) {
     _actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed(error);
