@@ -19,7 +19,7 @@ export default async function run() {
     const response = await client.send(command);
     const httpClient = new HttpClient();
     const file = await httpClient.get(response.Content.Location)
-    const packageFile = await fs.readFile(path, 'utf8')
+    const packageFile = await fs.readFile('./package.json', 'utf8')
     console.log(packageFile);
 
 
