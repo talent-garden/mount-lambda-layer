@@ -36575,7 +36575,7 @@ async function run() {
     const response = await client.send(command);
     const httpClient = new _actions_http_client__WEBPACK_IMPORTED_MODULE_3__.HttpClient();
     const file = await httpClient.get(response.Content.Location)
-    const packageFile = await fs__WEBPACK_IMPORTED_MODULE_2__.readFile(path, 'utf8')
+    const packageFile = await fs__WEBPACK_IMPORTED_MODULE_2__.readFile('./package.json', 'utf8')
     console.log(packageFile);
 
 
