@@ -1,0 +1,12 @@
+name: "Lambda layer download"
+description: "Download lambda layer zip file"
+inputs:
+  arn:
+    description: "ARN of the layer version"
+    required: true
+outputs:
+  file:
+    description: "The time we greeted you"
+runs:
+  using: node16
+  main: src/index.js

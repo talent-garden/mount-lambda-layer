@@ -1,0 +1,26 @@
+{
+  "name": "lambda-layer-download",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/talent-garden/lambda-layer-download.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/talent-garden/lambda-layer-download/issues"
+  },
+  "homepage": "https://github.com/talent-garden/lambda-layer-download#readme",
+  "dependencies": {
+    "@actions/core": "^1.9.0",
+    "@actions/github": "^5.0.3",
+    "@actions/http-client": "^2.0.1",
+    "@aws-sdk/client-lambda": "^3.121.0"
+  }
+}
