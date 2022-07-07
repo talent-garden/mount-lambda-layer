@@ -30,7 +30,6 @@ export default async function run() {
     const region = data[3];
     const layerName = data[6];
     console.log(`Layer ${layerName}!`);
-
     const client = new LambdaClient({ region });
     const command = new GetLayerVersionByArnCommand({ Arn: arn });
     const response = await client.send(command);
