@@ -4,9 +4,6 @@ inputs:
   arn:
     description: "ARN of the layer version"
     required: true
-outputs:
-  file:
-    description: "The time we greeted you"
 runs:
   using: node16
   main: dist/index.js

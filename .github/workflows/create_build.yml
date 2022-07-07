@@ -1,0 +1,27 @@
+name: Create build
+
+on:
+  push:
+    branches:
+      - "*"
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: 16.x
+      - name: Install with npm
+        run: npm install
+      - name: Generate build
+        run: npm run build
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: "dist"
+          author_name: Github Action
+          message: "Auto generated dist folder"

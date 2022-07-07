@@ -7,9 +7,6 @@
   "scripts": {
     "build": "ncc build src/index.js --license licenses.txt"
   },
-  "pre-commit": [
-    "build"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/talent-garden/lambda-layer-download.git"
@@ -27,7 +24,6 @@
     "unzipper": "^0.10.11"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.34.0",
-    "pre-commit": "^1.2.2"
+    "@vercel/ncc": "^0.34.0"
   }
 }
