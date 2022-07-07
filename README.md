@@ -7,9 +7,15 @@ The action will:
 - overrides the dependecy key in the `package.json` with the one in the package.json of the layer.
 
 ## Table of contents
-
+- [Requirements](#requirements)
 - [Inputs](#inputs)
 - [Outputs](#outputs)
+
+## Requirements
+
+You have to configure your AWS creadentials. \
+Use: [aws-actions/configure-aws-credentials@v1](https://github.com/aws-actions/configure-aws-credentials)\
+Add this action to your workflow!
 
 ## Inputs
 
