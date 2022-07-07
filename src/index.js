@@ -6,7 +6,7 @@ import { LambdaClient, GetLayerVersionByArnCommand } from "@aws-sdk/client-lambd
 
 const getPackageJsonContent = async (stream) => {
   let fileContent;
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve) => {
     stream.pipe(unzip.Parse())
       .on('entry', async (entry) => {
         const filePath = entry.path;
@@ -25,14 +25,11 @@ const getPackageJsonContent = async (stream) => {
 
 export default async function run() {
   try {
-    console.log('INIT');
     const arn = core.getInput('arn');
     const data = arn.split(':');
     const region = data[3];
     const layerName = data[6];
-    const layerVersion = data[7];
     console.log(`Layer ${layerName}!`);
-
     const client = new LambdaClient({ region });
     const command = new GetLayerVersionByArnCommand({ Arn: arn });
     const response = await client.send(command);
