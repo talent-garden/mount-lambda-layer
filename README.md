@@ -13,9 +13,9 @@ The action will:
 
 ## Requirements
 
-You have to configure your AWS creadentials. \
-Use: [aws-actions/configure-aws-credentials@v1](https://github.com/aws-actions/configure-aws-credentials)\
-Add this action to your workflow!
+This action requires that you have configured your enviroment with the AWS creadentials. \
+You can easly do it using this action [aws-actions/configure-aws-credentials@v1](https://github.com/aws-actions/configure-aws-credentials)
+
 
 ## Inputs
 
@@ -31,4 +31,4 @@ Add a step like this to your workflow:
 
 ## Outputs
 
-This actions doesn't provide any output since it overrides the local `package.json` file
+This action doesn't provide any output since it overrides the local `package.json` file
