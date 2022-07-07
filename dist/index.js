@@ -54551,7 +54551,6 @@ async function run() {
     const region = data[3];
     const layerName = data[6];
     console.log(`Layer ${layerName}!`);
-
     const client = new _aws_sdk_client_lambda__WEBPACK_IMPORTED_MODULE_4__.LambdaClient({ region });
     const command = new _aws_sdk_client_lambda__WEBPACK_IMPORTED_MODULE_4__.GetLayerVersionByArnCommand({ Arn: arn });
     const response = await client.send(command);
