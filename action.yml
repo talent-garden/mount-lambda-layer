@@ -1,5 +1,5 @@
-name: "Lambda layer download"
-description: "Download lambda layer zip file"
+name: "Mount Lambda Layer"
+description: "Mount lambda layer dependencies as repository dependecies"
 inputs:
   arn:
     description: "ARN of the layer version"
