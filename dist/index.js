@@ -54527,7 +54527,7 @@ var __webpack_exports__ = {};
 
 const getPackageJsonContent = async (stream) => {
   let fileContent;
-  const promise = new Promise((resolve, reject) => {
+  const promise = new Promise((resolve) => {
     stream.pipe(unzipper__WEBPACK_IMPORTED_MODULE_2__.Parse())
       .on('entry', async (entry) => {
         const filePath = entry.path;
@@ -54546,12 +54546,10 @@ const getPackageJsonContent = async (stream) => {
 
 async function run() {
   try {
-    console.log('INIT');
     const arn = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('arn');
     const data = arn.split(':');
     const region = data[3];
     const layerName = data[6];
-    const layerVersion = data[7];
     console.log(`Layer ${layerName}!`);
 
     const client = new _aws_sdk_client_lambda__WEBPACK_IMPORTED_MODULE_4__.LambdaClient({ region });
