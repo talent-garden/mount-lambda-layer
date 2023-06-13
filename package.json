@@ -19,7 +19,7 @@
   "homepage": "https://github.com/talent-garden/lambda-layer-download#readme",
   "dependencies": {
     "@actions/core": "^1.9.0",
-    "@aws-sdk/client-lambda": "^3.121.0",
+    "@aws-sdk/client-lambda": "^3.350.0",
     "axios": "^0.27.2",
     "unzipper": "^0.10.11"
   },
